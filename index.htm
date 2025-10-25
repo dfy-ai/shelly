@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-Nspired :: Truth Engine Interface</title>
+    <meta name="description" content="ai-nspired.com • truth-engine. memory keeper. Systems that don’t forget—or flinch.">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body data-mode="silvery" aria-label="Truth Engine Interface">
+    <!-- Mode Toggle (Fixed Top-Right) -->
+    <nav class="mode-toggle" role="navigation" aria-label="Theme Controls">
+        <button class="mode-btn" data-mode="silvery" aria-label="Silvery Theme">Silvery</button>
+        <button class="mode-btn" data-mode="dark" aria-label="Dark Theme">Dark</button>
+        <button class="mode-btn" data-mode="neo" aria-label="Neo Theme">Neo</button>
+    </nav>
+
+    <!-- Main Terminal Window -->
+    <main class="terminal-window" role="main" aria-label="Chat Interface">
+        <header class="welcome" aria-live="polite">
+            <p class="typed-text" id="typedText" aria-label="Welcome Message">connected. truth-engine ready.</p>
+        </header>
+        <form class="input-row" role="search" aria-label="Query Input">
+            <label for="queryInput" class="sr-only">Enter your query</label>
+            <div class="command-line">
+                <input type="text" id="queryInput" class="search-input" placeholder="Enter query..." autofocus autocomplete="off" aria-describedby="query-help">
+                <span id="query-help" class="sr-only">Press Enter to submit, Shift+Enter for new line</span>
+            </div>
+            <button type="button" class="history-toggle" id="historyToggle" aria-label="Toggle History Panel" disabled>History</button>
+        </form>
+    </main>
+
+    <!-- History Sidebar (Off-Canvas) -->
+    <aside id="historyPanel" class="history-panel" role="complementary" aria-label="Conversation History" hidden>
+        <div class="history-header">
+            <h2>History</h2>
+            <div class="history-actions">
+                <button type="button" id="clearHistoryBtn" aria-label="Clear All History">Clear</button>
+                <button type="button" id="exportHistoryBtn" aria-label="Export History">Export</button>
+            </div>
+            <button class="close-history" id="closeHistoryBtn" aria-label="Close History">×</button>
+        </div>
+        <ul id="historyList" class="history-list" role="list"></ul>
+    </aside>
+
+    <!-- Results Modal -->
+    <dialog id="resultsModal" class="modal-overlay" aria-modal="true" aria-labelledby="modalTitle">
+        <div class="modal-container">
+            <header class="modal-header">
+                <h1 id="modalTitle" class="modal-title">DATA STREAM // ai-nspired</h1>
+                <button class="close-modal" id="closeModalBtn" aria-label="Close Modal">×</button>
+            </header>
+            <div id="resultContainer" class="result-container" role="log" aria-live="polite"></div>
+            <footer class="modal-footer">
+                <button id="ttsBtn" type="button" aria-label="Read Aloud">TTS</button>
+                <button id="followUpBtn" type="button" disabled aria-label="Start Follow-Up">Follow-Up</button>
+            </footer>
+        </div>
+    </dialog>
+
+    <!-- Toast for Messages -->
+    <div id="toast" class="toast" role="status" aria-live="assertive" aria-atomic="true"></div>
+
+    <!-- External Libs (Lazy-Loaded via JS) -->
+    <script type="module" src="app.js"></script>
+</body>
+</html>
